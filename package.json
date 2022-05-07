@@ -1,0 +1,15 @@
+{
+  "name": "boilerplate",
+  "version": "1.0.0",
+  "description": "boilerplate to develop discord bot in node js",
+  "main": "bot.js",
+  "scripts": {
+    "test": "node src/bot.js"
+  },
+  "author": "Techminate",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^13.6.0",
+    "dotenv": "^16.0.0"
+  }
+}
