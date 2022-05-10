@@ -1,11 +1,11 @@
 const mongoose = require('mongoose')
 const fs = require('fs')
-const mongoEventFiles = fs.readdirSync('./src/mongoEvents').filter(file => file.endsWith('.js'));
+const mongoEventFiles = fs.readdirSync('./src/events/database').filter(file => file.endsWith('.js'));
 
 module.exports = (client) =>{
-    client.dbLogin = async() => {
+    client.dbConnection = async() => {
         for (const file of mongoEventFiles) {
-            const event = require(`../mongoEvents/${file}`);
+            const event = require(`../events/database/${file}`);
             if (event.once) {
                 mongoose.connection.once(event.name, (...args) => event.execute(...args));
             } else {
