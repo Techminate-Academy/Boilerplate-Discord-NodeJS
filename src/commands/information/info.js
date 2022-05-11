@@ -22,6 +22,10 @@ module.exports = {
             }else{
                 await interaction.reply(`Username : ${interaction.user.username}\n Your ID: ${interaction.user.id}`);
             }
+        }else if(interection.option.getSubcommand() === 'server'){
+            await interaction.reply(`server name : ${interection.guild.name}\n Total Members : ${interaction.guild.memberCount}`)
+        }else{
+            await interection.reply('no sub command was used.')
         }
 	},
 };
