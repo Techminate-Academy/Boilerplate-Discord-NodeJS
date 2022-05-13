@@ -20,7 +20,7 @@ module.exports = {
             .setDescription('Info about the server')),
 
     async execute(interaction, client) {
-        if (interaction.options.getSubCommand() === 'user') {
+        if (interaction.options.getSubcommand() === 'user') {
             const user = interaction.options.getUser('target');
             if (user) {
                 const userEmbed = new MessageEmbed()
@@ -31,21 +31,20 @@ module.exports = {
                     .EmbedAuthorData('Sazid Ahmed', client.user.displayAvatarURL(), 'http://sazidahmed.tk')
                     .setThumbnail(client.user.displayAvatarURL())
                     .addFields(
-                        { name: 'Regular field title', value: 'Some value here' },
-                        { name: '\u200B', value: '\u200B' },
-                        { name: 'Inline field title', value: 'Some value here', inline: true },
-                        { name: 'Inline field title', value: 'Some value here', inline: true },
+                        { name: 'username', value: `Username is : ${user.username}`, inline:true },
+                        { name: '\u200B', value: '\u200B', inline:true },
+                        { name: 'Tag', value: `Tag is : #${user.discriminator}`, inline: true }
                     )
                     .addField('Inline field title', 'Some value here', true)
-                    .setImage('https://i.imgur.com/AfFp7pu.png')
+                    .setImage('attachment://logo.png')
                     .setTimestamp()
-                    .setFooter({ text: 'Some footer text here', iconURL: 'https://i.imgur.com/AfFp7pu.png' });
+                    .setFooter(client.user.tag, client.user.displayAvatarURL());
             await interaction.reply(`Username : ${user.username}\n ID: ${user.id}`);
         } else {
             await interaction.reply(`Username : ${interaction.user.username}\n Your ID: ${interaction.user.id}`);
         }
-    } else if (interaction.options.getSubCommand() === 'server') {
-        await interaction.reply(`server name : ${interaction.guild.name}\n Total Members : ${interaction.guild.membercount}`)
+    } else if (interaction.options.getSubcommand() === 'server') {
+        await interaction.reply(`server name : ${interaction.guild.name}\n Total Members : ${interaction.guild.memberCount}`)
     } else {
         await interaction.reply('no sub command was used.')
     }
