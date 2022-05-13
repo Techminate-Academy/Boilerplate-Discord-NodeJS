@@ -13,7 +13,7 @@ module.exports = {
             subcommand
             .setName('user')
             .setDescription('Info about a user')
-            .addUserOption(option => option.setName('target').setDescription('The mentioned user')))
+            .addUserOption(option => option.setName("target").setDescription('The mentioned user')))
         .addSubcommand(subcommand =>
             subcommand
             .setName('server')
@@ -23,12 +23,12 @@ module.exports = {
         if (interaction.options.getSubcommand() === 'user') {
             const user = interaction.options.getUser('target');
             if (user) {
-                const userEmbed = new MessageEmbed()
                 const file = new MessageAttachment('./src/images/logo.png')
-                    .setTitle(`${user.username}'s Information: `)
-                    .setDescription('This is a description')
+                const userEmbed = new MessageEmbed()
+                    .setTitle(`${user.username} `)
+                    .setDescription('Description')
                     .setURL('http://sazidahmed.com')
-                    .EmbedAuthorData('Sazid Ahmed', client.user.displayAvatarURL(), 'http://sazidahmed.tk')
+                    .setAuthor({ name: 'Sazid Ahmed', iconURL: client.user.displayAvatarURL(), url: 'https://discord.js.org' })
                     .setThumbnail(client.user.displayAvatarURL())
                     .addFields(
                         { name: 'username', value: `Username is : ${user.username}`, inline:true },
@@ -38,13 +38,16 @@ module.exports = {
                     .addField('Inline field title', 'Some value here', true)
                     .setImage('attachment://logo.png')
                     .setTimestamp()
-                    .setFooter(client.user.tag, client.user.displayAvatarURL());
-            await interaction.reply(`Username : ${user.username}\n ID: ${user.id}`);
+                    .setColor('RED')
+                    .setFooter({ text: client.user.tag, iconURL: client.user.displayAvatarURL() });
+                    
+            // await interaction.reply(`Username : ${user.username}\n ID: ${user.id}`);
+            await interaction.reply({embeds : [userEmbed], files: [file] });
         } else {
             await interaction.reply(`Username : ${interaction.user.username}\n Your ID: ${interaction.user.id}`);
         }
     } else if (interaction.options.getSubcommand() === 'server') {
-        await interaction.reply(`server name : ${interaction.guild.name}\n Total Members : ${interaction.guild.memberCount}`)
+        await interaction.reply(`Server name : ${interaction.guild.name}\n Total Members : ${interaction.guild.memberCount}`)
     } else {
         await interaction.reply('no sub command was used.')
     }
