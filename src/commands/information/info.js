@@ -24,11 +24,22 @@ module.exports = {
             const user = interaction.options.getUser('target');
             if (user) {
                 const userEmbed = new MessageEmbed()
+                const file = new MessageAttachment('./src/images/logo.png')
                     .setTitle(`${user.username}'s Information: `)
                     .setDescription('This is a description')
                     .setURL('http://sazidahmed.com')
                     .EmbedAuthorData('Sazid Ahmed', client.user.displayAvatarURL(), 'http://sazidahmed.tk')
                     .setThumbnail(client.user.displayAvatarURL())
+                    .addFields(
+                        { name: 'Regular field title', value: 'Some value here' },
+                        { name: '\u200B', value: '\u200B' },
+                        { name: 'Inline field title', value: 'Some value here', inline: true },
+                        { name: 'Inline field title', value: 'Some value here', inline: true },
+                    )
+                    .addField('Inline field title', 'Some value here', true)
+                    .setImage('https://i.imgur.com/AfFp7pu.png')
+                    .setTimestamp()
+                    .setFooter({ text: 'Some footer text here', iconURL: 'https://i.imgur.com/AfFp7pu.png' });
             await interaction.reply(`Username : ${user.username}\n ID: ${user.id}`);
         } else {
             await interaction.reply(`Username : ${interaction.user.username}\n Your ID: ${interaction.user.id}`);
