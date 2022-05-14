@@ -8,14 +8,14 @@ const {
 
 module.exports = {
 	data: new SlashCommandBuilder()
-		.setName('Color')
+		.setName('color')
 		.setDescription('Ask your favorite color'),
 
 	async execute(interaction, client) {
 		const row = new MessageActionRow()
 			.addComponents(
 				new MessageSelectMenu()
-				.setCustomId('select-color')
+				.setCustomId('selectColor')
 				.setPlaceholder('Nothing selected')
 				.setMinValues(1)
 				.setMaxValues(2)

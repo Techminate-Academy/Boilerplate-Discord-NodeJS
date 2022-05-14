@@ -16,10 +16,10 @@ module.exports = {
                 });
             }
         } else if (interaction.isSelectMenu()) {
-            if(interaction.customId == 'select-color'){
+            if(interaction.customId == 'selectColor'){
                 let colors = "";
                 await interaction.values.forEach(async value => {
-                    colors += `${value}`                   
+                    colors += `${value} `                   
                 });
                 await interaction.reply({content: `your favorite colors are : ${colors}`})
             }
