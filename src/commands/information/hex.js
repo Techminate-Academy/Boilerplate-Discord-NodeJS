@@ -15,17 +15,17 @@ module.exports = {
         const row = new MessageActionRow()
             .addComponents(
                 new MessageButton()
-                .setCustomId('primary')
+                .setCustomId('primary-button')
                 .setLabel('Primary')
                 .setStyle('PRIMARY'),
 
                 new MessageButton()
-                .setCustomId('success')
+                .setCustomId('success-button')
                 .setLabel('Success')
                 .setStyle('SUCCESS'),
 
                 new MessageButton()
-                .setCustomId('danger')
+                .setCustomId('danger-button')
                 .setLabel('Danger')
                 .setStyle('DANGER'),
             );

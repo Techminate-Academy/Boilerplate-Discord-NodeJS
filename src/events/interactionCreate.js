@@ -16,12 +16,26 @@ module.exports = {
                 });
             }
         } else if (interaction.isSelectMenu()) {
-            if(interaction.customId == 'selectColor'){
+            if (interaction.customId == 'selectColor') {
                 let colors = "";
                 await interaction.values.forEach(async value => {
-                    colors += `${value} `                   
+                    colors += `${value} `
                 });
-                await interaction.reply({content: `your favorite colors are : ${colors}`})
+                await interaction.reply({
+                    content: `your favorite colors are : ${colors}`
+                })
+            }
+        } else if (interaction.isButton()) {
+            if (interaction.customId.includes('-button')) {
+                if (interaction.customId.includes('primary')) {
+                    await interaction.reply({content :'Color Primary : #ED4245'})
+                }
+                else if (interaction.customId.includes('success')) {
+                    await interaction.reply({content :'Color Success : #57F287'})
+                }
+                else if (interaction.customId.includes('danger')) {
+                    await interaction.reply({content :'Color Danger : #5865F2'})
+                }
             }
         }
 
