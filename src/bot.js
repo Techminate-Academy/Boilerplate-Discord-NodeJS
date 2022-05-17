@@ -3,6 +3,7 @@ const fs = require('fs');
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 
 client.commands = new Collection();
+client.buttons = new Collection();
 
 require('dotenv').config();
 
@@ -16,6 +17,7 @@ const commandFolders = fs.readdirSync('./src/commands');
     }
     client.handleEvents(eventFiles, './src/events');
     client.handleCommands(commandFolders, './src/commands');
+    client.handleButtons();
     client.login(process.env.token);
     client.dbConnection();
 })();

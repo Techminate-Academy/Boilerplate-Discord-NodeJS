@@ -1,3 +1,5 @@
+const { Interaction } = require("discord.js");
+
 module.exports = {
     name: 'interactionCreate',
     async execute(interaction, client) {
@@ -26,16 +28,19 @@ module.exports = {
                 })
             }
         } else if (interaction.isButton()) {
-            if (interaction.customId.includes('-button')) {
-                if (interaction.customId.includes('primary')) {
-                    await interaction.reply({content :'Color Primary : #ED4245'})
-                }
-                else if (interaction.customId.includes('success')) {
-                    await interaction.reply({content :'Color Success : #57F287'})
-                }
-                else if (interaction.customId.includes('danger')) {
-                    await interaction.reply({content :'Color Danger : #5865F2'})
-                }
+            const button = client.buttons.get(interaction.customId);
+
+            if(!button) 
+            return await  interaction.reply({content :'No button code found'})
+
+            try {
+                await button.execute(interaction, client);
+            } catch (error) {
+                console.error(error);
+                await interaction.reply({
+                    content: 'There was an error while executing this command!',
+                    ephemeral: true
+                });
             }
         }
 
