@@ -4,6 +4,6 @@ module.exports = {
 	async execute(client) {
 		console.log(`Ready! Logged in as ${client.user.tag}`);
 
-		client.user.setPresence({activites:[{name: 'with disckod.js', type: 'player'}], status:'online'})
+		client.user.setPresence({activities:[{name: 'Techminate Bot', type: 'PLAYING'}], status:'dnd'})
 	},
 };
